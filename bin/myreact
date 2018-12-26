@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/winshare/Playground/Tutorials/react-redux-complete
+/usr/bin/code
