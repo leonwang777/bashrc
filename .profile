@@ -20,7 +20,6 @@ fi
 PATH="./:$HOME/bin:$HOME/.local/bin:/home/leon/npm-global/bin:$PATH"
 export PATH
 
-eval $(ssh-agent -s)
-ssh -T git@gitlab.com
-ssh -T git@github.com
-ssh -T git#gitlab.com
+#eval $(ssh-agent -s)
+#ssh -T git@gitlab.com
+#ssh -T git@github.com
