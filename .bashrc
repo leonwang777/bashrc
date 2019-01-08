@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    (xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -93,7 +93,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ ! eval $(ssh-agent -s) ]; then
-	ssh -T git@gitlab.com
-	ssh -T git@github.com
-fi
+#if [ ! eval $(ssh-agent -s) ]; then
+#	ssh -T git@gitlab.com
+#	ssh -T git@github.com
+#fi

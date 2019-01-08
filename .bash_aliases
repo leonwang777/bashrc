@@ -1,13 +1,16 @@
 # For windows 10 programs
-alias vscode="/mnt/c/Program Files/Microsoft VS Code/Code.exe"
 
+if [  -n $( uname -r | grep Microsoft ) ]; then 
+   alias vscode="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe"
+   alias atom="/mnt/c/Users/LeonWang/AppData/Local/atom/atom.exe"
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
