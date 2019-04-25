@@ -1,6 +1,6 @@
 # For windows 10 programs
 
-if [  -n $( uname -r | grep Microsoft ) ]; then 
+if [   "$(uname -r|grep Microsoft)" != '' ]; then 
    alias vscode="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe"
    alias atom="/mnt/c/Users/LeonWang/AppData/Local/atom/atom.exe"
 fi
@@ -11,10 +11,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
+    alias diff='diff --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias egrep='egrep --color=auto'   
 fi
 
 # colored GCC warnings and errors
@@ -50,35 +50,29 @@ alias ipaddr='ip -c addr'
 
 # check cpu usage
 alias ps='ps aux'
-
 alias hist='history'
-#
-
+# for untar and ungzip, unbz
 alias txgz='tar xvzf'
 alias txbz='tar xvjf'
 
-#list opened files of tcp network port 1 ~ 1024 
-
+#list opened files of tcp network port 1 ~ 1024
 alias lsoftcp='lsof -i TCP:1-1024'
-
 #shows the list of all network connections ‘LISTENING & ESTABLISHED’.
 alias lsofnet='lsof -i'
-
 # list all filed opened of the user
 alias lsofusr='lsof -u'
-
 #list all TCP / UDP connections
 alias lsoftu='lsof -i tcp; lsof -i udp;'
-
 #list all processes which are listening th particular port
 alias lsofport='lsof -i :[port]'
-
 # kill
 alias killupro='kill -9 `lsof -t -u [usrname]`'
-
-
-
+# tmux 
 alias killtm='tmux kill-server'
 alias tmls='tmux ls'
 alias tmlss='tmux list-sessions'
 alias tmlsw='tmux list-windows'
+
+alias mi='/snap/bin/micro'
+alias chrome='/usr/bin/google-chrome'
+alias chromium='/usr/bin/chromium-browser'

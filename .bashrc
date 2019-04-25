@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    (xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -97,3 +97,45 @@ fi
 #	ssh -T git@gitlab.com
 #	ssh -T git@github.com
 #fi
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+
+
+        function custom_prompt() {
+  			__git_ps1 "\[\033[0;31m\]\u \[\033[0;36m\]\h:\w\[\033[00m\]" " \n\[\033[0;31m\]>\[\033[00m\] " " %s"
+  			VTE_PWD_THING="$(__vte_osc7)"
+  			PS1="$PS1$VTE_PWD_THING"
+		}
+		PROMPT_COMMAND=`custom_prompt`
+fi
+
+if [ $(uname -n | grep leon-ASUSPRO-B9440) != '' ]; then
+#	sudo ntfsfix /dev/nvme0n1p4
+	alias windisk='sudo mount -t ntfs -o auto,rw,user,suid,uid=leon,gid=leon /dev/nvme0n1p4 /home/leon/winshare'
+fi
+
+# set PATH so it includes user's private bin directories
+# JAVA, Maven, Gradle related environment and paths are defined system wide in files with .sh extension under /etc/profile.d respectively.
+PATH="./:$HOME/bin:$HOME/.local/bin:/home/leon/npm-global/bin:/etc/alternatives:$PATH"
+export PATH
+
+# added by Anaconda3 2018.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/usr/share/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/usr/share/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/share/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/usr/share/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/leon/.sdkman"
+[[ -s "/home/leon/.sdkman/bin/sdkman-init.sh" ]] && source "/home/leon/.sdkman/bin/sdkman-init.sh"
