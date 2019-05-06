@@ -19,3 +19,6 @@ fi
 eval $(ssh-agent -s)
 #ssh -T git@gitlab.com
 #ssh -T git@github.com
+export GOPATH=$HOME/WorkSpace/Gowork
+export GOROOT=/usr/lib/go
+export PATH=$PATH:$GOPATH/bin
