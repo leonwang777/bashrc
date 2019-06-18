@@ -1,5 +1,5 @@
 #!/bin/sh
-pushd
+pushd `pwd`
 cd /home/leon/Downloads/teams-ubuntu
 npm start &
 popd

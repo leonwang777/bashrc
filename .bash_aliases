@@ -24,6 +24,9 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lf="ls -l | egrep -v '^d'"
+alias laf="ls -al | egrep -v '^d'"
+alias ldir='ls -d */'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -72,8 +75,30 @@ alias killtm='tmux kill-server'
 alias tmls='tmux ls'
 alias tmlss='tmux list-sessions'
 alias tmlsw='tmux list-windows'
+alias tmlsp='tmux list-panes'
+alias tmkey='tmux list-keys'
+alias tmkw='tmux kill-window -t'
+alias tmkallw='tmux kill-window -a'
+alias tmkp='tmux kill-pane -t'
+alias tmkallp='tmux kill-pane -a'
+alias tmkeys='tmus list-keys'
+alias tmpid='tmux display-panes -d 0'
+alias tmks='tmux kill-session -t'
 
+# Frequently apps
 alias mi='/snap/bin/micro'
 alias chrome='/usr/bin/google-chrome'
 alias chromium='/usr/bin/chromium-browser'
 alias mkdir='mkdir -p'
+alias virtualenv='virtualenv -p python3'
+
+alias dkps='docker ps -a'
+alias dkrm='docker rm'
+alias dkrmi='docker rmi'
+alias dks='docker stop'
+alias dkrdit='docker run -dit'
+alias dkeit='docker exec -it'
+alias dknwls='docker network ls'
+alias dki='docker images'
+
+alias ccat='/usr/games/lolcat'

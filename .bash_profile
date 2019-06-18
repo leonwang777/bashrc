@@ -16,9 +16,11 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-eval $(ssh-agent -s)
+#eval $(ssh-agent -s)
 #ssh -T git@gitlab.com
 #ssh -T git@github.com
 export GOPATH=$HOME/WorkSpace/Gowork
 export GOROOT=/usr/lib/go
 export PATH=$PATH:$GOPATH/bin
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/tcl8.6

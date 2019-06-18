@@ -1,0 +1,3 @@
+#!/bin/sh
+for f in $(ls -f ~/bashrc | grep '^\.') ; do [ ! -d $f ] && [ $f != ".gitignore" ] && cp  ~/$f ~/bashrc ; done
+cp -r ~/bin/* ~/bashrc/bin/

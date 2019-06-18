@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -47,17 +47,18 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    export PS1="\[$(tput bold)\]\[\033[38;5;82m\]\T\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;229m\]\u\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;13m\]@\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;228m\]\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;13m\]:\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;39m\]\w\[$(tput sgr0)\]\[\033[38;5;196m\]>\[$(tput sgr0)\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -65,10 +66,10 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
-*)
+    *)
     ;;
 esac
 
@@ -86,11 +87,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 #if [ ! eval $(ssh-agent -s) ]; then
@@ -98,20 +99,20 @@ fi
 #	ssh -T git@github.com
 #fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-
-
-        function custom_prompt() {
-  			__git_ps1 "\[\033[0;31m\]\u \[\033[0;36m\]\h:\w\[\033[00m\]" " \n\[\033[0;31m\]>\[\033[00m\] " " %s"
-  			VTE_PWD_THING="$(__vte_osc7)"
-  			PS1="$PS1$VTE_PWD_THING"
-		}
-		PROMPT_COMMAND=`custom_prompt`
+    source /etc/profile.d/vte.sh
+    
+    
+    function custom_prompt() {
+        __git_ps1 "\[\033[0;31m\]\u \[\033[0;36m\]\h:\w\[\033[00m\]" " \n\[\033[0;31m\]>\[\033[00m\] " " %s"
+        VTE_PWD_THING="$(__vte_osc7)"
+        PS1="$PS1$VTE_PWD_THING"
+    }
+    PROMPT_COMMAND=`custom_prompt`
 fi
 
 if [ $(uname -n | grep leon-ASUSPRO-B9440) != '' ]; then
-#	sudo ntfsfix /dev/nvme0n1p4
-	alias windisk='sudo mount -t ntfs -o auto,rw,user,suid,uid=leon,gid=leon /dev/nvme0n1p4 /home/leon/winshare'
+    #	sudo ntfsfix /dev/nvme0n1p4
+    alias windisk='sudo mount -t ntfs -o auto,rw,user,suid,uid=leon,gid=leon /dev/nvme0n1p4 /home/leon/winshare'
 fi
 
 # set PATH so it includes user's private bin directories
@@ -130,7 +131,8 @@ else
         . "/usr/share/anaconda3/etc/profile.d/conda.sh"
         CONDA_CHANGEPS1=false conda activate base
     else
-        \export PATH="/usr/share/anaconda3/bin:$PATH"
+        # \export PATH="/usr/share/anaconda3/bin:$PATH"
+        \export PATH="$PATH:/usr/share/anaconda3/bin"
     fi
 fi
 unset __conda_setup
@@ -139,3 +141,23 @@ unset __conda_setup
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/leon/.sdkman"
 [[ -s "/home/leon/.sdkman/bin/sdkman-init.sh" ]] && source "/home/leon/.sdkman/bin/sdkman-init.sh"
+
+export TCLLIBPATH="/usr/lib/x86_64-linux-gnu"
+
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+POWERLINE_SCRIPT=/usr/share/powerline/bindings/bash/powerline.sh
+if [ -f $POWERLINE_SCRIPT ]; then
+  source $POWERLINE_SCRIPT
+fi
+
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+figlet Welcome Leon!
