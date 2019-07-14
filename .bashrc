@@ -160,4 +160,6 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-figlet Welcome Leon!
+
+# figlet Welcome    `whoami`!
+toilet -f mono12 -F metal  Welcome $(whoami) !

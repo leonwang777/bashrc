@@ -1,0 +1,14 @@
+#!/bin/bash
+# find and replace string pattern ($3) with new str ($4) in files under path but exludes files pattern ($2) 
+if [[ $# == 4 ]]
+then
+    echo  run $0 $*
+    # replace and backup orignal file with .old
+	grep -rl --color=auto $1 -e $3 | grep -v $2 | xargs -r sed -s -i.old -e "s/$3/$4/g"
+#	grep -rl $3 $1  | grep -v $2 | xargs -r sed -s -i.old -e "s/$3/$4/g"
+else
+	echo Error: $0 $@ for number of arguments $# is less than 5
+	echo "[Usage:] findreplace.sh path exclude_files_pattern old_str_pattern new_str"	
+fi
+#	grep -rli --color=auto $1 -e $2  | sed -i 's/$2/$3/g'
+# for fp in $( grep -rli --color=auto 'pgp.mit.edu:80' ) ; do d=$(dirname ${fp}) && f=$(basename ${fp}) ;  echo found mit in dir: $d and filename: $f ; done

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 pushd `pwd`
 cd /home/leon/Downloads/teams-ubuntu
 npm start &

@@ -102,3 +102,8 @@ alias dknwls='docker network ls'
 alias dki='docker images'
 
 alias ccat='/usr/games/lolcat'
+alias goaml='cd ~/ProjSrc/AML'
+alias rcloned='rclone mount --allow-non-empty --daemon --write-back-cache onedrive:/ ~/OneDriven/'
+alias cdir='. ~/bin/godir'
+
+

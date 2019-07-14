@@ -1,0 +1,3 @@
+#!/bin/bash
+# rclone sync --dry-run --exclude-from ~/OneDrive/.rclone_ignore ~/OneDrive/ onedrive:/
+rclone sync --exclude-from ~/OneDrive/.rclone_ignore ~/OneDrive/ onedrive:/

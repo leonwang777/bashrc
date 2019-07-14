@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #docker run  -P --name openl openltablets/webstudio
 echo using port 32768 for web, run OpenL Tablets WebStudio on your browser by http://localhost:32768
 echo bind mount to local host path /home/leon/WorkSpace/openlworkdir to the path /root/.openl inside of WebStudio docker image 

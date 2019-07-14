@@ -1,0 +1,6 @@
+#!/bin/bash
+# clean docker containers and images
+# stop and rm containers
+dk_rmall
+# rmi all docker images
+dk_rmiall

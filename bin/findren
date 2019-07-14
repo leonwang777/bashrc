@@ -1,0 +1,12 @@
+#!/bin/bash
+# rename files under current path with new name 
+if [[ $# == 3 ]]
+then
+	find . -maxdepth 1 -type f -name "$1" | rename "s/$2/$3/g"
+elif [[ $# == 2 ]]
+then
+	find . -maxdepth 1 -type f -name "$1" | rename "s/$2//g"
+else
+	echo -e "[Usage] findren file_pattern old_string new_string, or \nfindren <file pattern string> <old string>. If skip <new string> it will delete old string"
+	
+fi

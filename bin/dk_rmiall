@@ -1,0 +1,10 @@
+#!/bin/bash
+# docker rmi $* $(docker images -q)
+read -p $'\e[31mAre you sure you want to delete ALL Docker images ? [y/n]\e[0m\n' -n 1 -r
+echo -e "\n"
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	# Delete all images
+    docker images -q -a | xargs --no-run-if-empty docker rmi
+fi
+docker images

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 uname -a
 echo "\n<============================ /proc/version ============================>\n"
 cat /proc/version
