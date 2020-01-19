@@ -1,0 +1,4 @@
+#!/bin/bash
+pid=$( ps | grep 'rclone mount' | grep onedrive | awk '{print $2}' )
+echo "Will kill rclone process $pid"
+kill -9 $pid

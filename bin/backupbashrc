@@ -1,0 +1,28 @@
+#!/bin/bash
+SRC=/home/leon
+DEST=/home/leon/bashrc
+tmpDEST=/tmp/backuprc
+# for f in $(ls -f ~/bashrc | grep '^\.') ; do [ ! -d $f ] && [ $f != ".gitignore" ] && cp  ~/$f ~/bashrc ; done
+# find ~/bashrc -name '.git' -prune -o -name 'bin' -prune -o -not -name '.git*' -print
+#cd $DEST
+
+[[ ! -d $tmpDEST ]] && mkdir $tmpDEST
+
+
+cd /home/leon/bashrc
+pwd
+find . -maxdepth 1 -not -name '.git*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp $SRC/{} $tmpDEST \;
+
+[[ ! -d $tmpDEST/bin ]] && mkdir $tmpDEST/bin
+
+#find $SRC/bin -maxdepth 1 -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
+find $SRC/bin -maxdepth 1 -not -name '4jdesk' -not -name 'msteams' -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
+
+echo "cp -r $tmpDEST/* $DEST/"
+cp -r $tmpDEST/* $DEST/
+
+echo "cp $tmpDEST/.* $DEST/"
+cp -r $tmpDEST/.* $DEST/
+
+
+ls -al

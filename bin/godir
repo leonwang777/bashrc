@@ -1,0 +1,67 @@
+#!/bin/bash
+# The cd is done within the script's shell. When the script ends, that shell exits, and then you are left in the directory you were.
+if [[ $# == 1 ]]
+then
+    ans=$1
+else
+cat << EOF
+	1) ~/ProjSrc/AML                                             2) ~/ProjSrc/AML/aml-backend
+	3) ~/ProjSrc/AML/aml-frontend                                4) ~/ProjSrc/AML/aml-datagen
+	5) ~/ProjSrc/AML/Infra                                       6) ~/ProjSrc/ICBC/SystemConfig
+	7) ~/bin                                                     8) /usr/share/anaconda3
+	9) /home/leon/ProjSrc/ICBC/SystemConfig                      0) ~/Downloads/testcodes/learn_from_ithelp/ 
+	a)                                                           b) ~/Downloads/testcodes/learn_from_ithelp/Hung洪啟瑞/ 
+	c)							d)
+	e)							f)
+	g)							h)
+	x) return\n"
+EOF
+    echo -n "Which directory to go ? "
+    read ans
+fi
+case $ans in
+    1)
+        echo cd to ~/ProjSrc/AML
+    cd /home/leon/ProjSrc/AML								;;
+    2)
+        echo cd to ~/ProjSrc/AML/aml-backend
+    cd ~/ProjSrc/AML/aml-backend							;;
+    3)
+        echo cd to ~/ProjSrc/AML/aml-frontend
+    cd ~/ProjSrc/AML/aml-frontend							;;
+    4)
+        echo cd to ~/ProjSrc/AML/aml-datagena
+    cd ~/ProjSrc/AML/aml-datagen							;;
+    5)
+        echo cd to ~/ProjSrc/AML/Infra
+    cd ~/ProjSrc/AML/Infra								;;
+    6)
+        echo cd to ~/ProjSrc/ICBC/SystemConfig
+    cd ~/ProjSrc/ICBC/SystemConfig							;;
+    7)
+        echo cd to ~/bin
+    cd ~/bin										;;
+    8)
+        echo cd to /usr/share/anaconda3
+    cd /usr/share/anaconda3								;;
+    9)
+        echo cd to /home/leon/ProjSrc/ICBC/SystemConfig
+    cd /home/leon/ProjSrc/ICBC/SystemConfig						;;
+    0)
+        echo cd to ~/Downloads/testcodes/learn_from_ithelp/ 
+    cd ~/Downloads/testcodes/learn_from_ithelp/						;;
+    a)
+        echo cd to 
+    cd 					;;
+    b)
+        echo cd to ~/Downloads/testcodes/learn_from_ithelp/Hung洪啟瑞/  
+    cd ~/Downloads/testcodes/learn_from_ithelp/Hung洪啟瑞/ 				;;
+    c)
+        echo cd to
+    cd 		;;
+    x)
+    return ;;
+    *)
+    echo "Invalid input '$ans'";;
+esac
+echo -e '\n\nIF not work ? run it with ". godir num " (dot space then godir)'

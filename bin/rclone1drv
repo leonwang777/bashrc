@@ -1,0 +1,30 @@
+#!/bin/sh
+# rclone mount onedrive: /home/leon/OneDrive \
+rclone mount onedrive: /home/leon/OneDrv \
+--allow-non-empty
+--rc \
+--checkers 64 \
+--checksum \
+--drive-chunk-size 4M \
+--tpslimit 32 \
+--transfers 64 \
+--allow-other \
+--buffer-size 256M \
+--max-read-ahead 128M \
+--dir-cache-time 120m \
+--cache-chunk-size 16M \
+--cache-dir /Downloads/Rclone_cache \
+--cache-db-path /Downloads/Rclone_cache  \
+--cache-chunk-path /Downloads/Rclone_cache  \
+--cache-total-chunk-size 512M \
+--cache-chunk-clean-interval 30m \
+--cache-tmp-wait-time 72h \
+--cache-tmp-upload-path /Downloads/Rclone_cache  \
+--daemon \
+--fast-list \
+--multi-thread-cutoff 256M
+--multi-thread-streams 16
+--vfs-cache-max-age duration 72h \
+--vfs-cache-mode full \
+--vfs-cache-poll-interval 5m \
+--vfs-cache-max-size 512M

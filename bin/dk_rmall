@@ -1,0 +1,21 @@
+#!/bin/bash
+# rm all docker containers
+# copied from https://www.elliotjreed.com/remove-all-docker-containers-volumes-networks-and-images/
+#
+
+rm_all_containers() {
+    read -p $'\e[31mAre you sure you want to delete ALL Docker containers ? [y/n]\e[0m\n' -n 1 -r
+    echo -e "\n"
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        # Stop all containers
+        docker ps -a -q | xargs --no-run-if-empty docker stop
+        # Delete all containers
+        docker ps -a -q | xargs --no-run-if-empty docker rm
+    fi
+}
+
+rm_all_containers
+echo "============================================="
+docker ps
+echo "============================================="

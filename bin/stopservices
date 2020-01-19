@@ -1,0 +1,13 @@
+#!/bin/sh
+sudo snap stop plexmediaserver
+sudo systemctl stop teamviewerd
+sudo systemctl stop apache2
+sudo systemctl stop anydesk.service
+sudo systemctl stop x2goserver.service
+sudo snap services plexmediaserver
+sudo systemctl status teamviewerd
+sudo systemctl status apache2
+sudo systemctl status anydesk.service
+sudo systemctl status x2goserver.service
+sudo /usr/share/zookeeper/bin/zkServer.sh stop
+sudo /usr/share/tomcat8/bin/shutdown.sh

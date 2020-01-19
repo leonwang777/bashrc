@@ -1,0 +1,8 @@
+#!/bin/bash
+read -p $'\e[31mAre you sure you want to delete ALL Docker networks ? [y/n]\e[0m\n' -n 1 -r
+echo -e "\n"
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+	# Delete all networks
+    docker network ls -q | xargs --no-run-if-empty docker network rm
+fi       

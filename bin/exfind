@@ -1,0 +1,23 @@
+#!/bin/bash
+# example 
+# find . -type f -not -path "./node_modules/*" -not -path "./src/app/pages/*" -name index.js -print
+# find . \( -path ./node_modules -o -path ./src/app/pages \) -prune -o  -name index.js -print
+if [[ $# < 3 ]] 
+then
+	printf "Usage: exfind path_to_find pattern_to_find [exclude_dirs ...]\n"
+	printf "For example: exfind . index.js ./node_modules ./src/app/pages"
+	echo -e "$0 $@ ($#)\n"
+	exit 1
+fi	
+exclude_dirs=""
+i=2
+arr=( $@ )
+for (( i=2 ; i < $#-1 ; i++ )) 
+do
+	exclude_dirs="$exclude_dirs -path ${arr[$i]} -o " 
+done
+exclude_dirs="$exclude_dirs -path ${arr[$i]} " 
+printf "dirs are excluded : $exclude_dirs\n"
+
+echo -e "run command : find $1  \( $exclude_dirs \) -prune -o -name $2 -print \n\n"
+find $1  \( $exclude_dirs \) -prune -o -name $2 -print

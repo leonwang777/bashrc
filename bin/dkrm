@@ -1,0 +1,20 @@
+#!/bin/bash
+#-------------------------------------
+# rm specified docker container
+#-------------------------------------
+if [ $# -lt 1 ]
+then 
+	echo "[Usage:] dkrm <container id or name>\n" 
+else
+	for target in $@ 
+	do
+		read -n 1 -p "Will remove container $target. To be continue (y/n) ? " ans
+		echo -e "\n"
+		if [[ $ans =~ ^[Yy]$ ]]
+		then  
+			docker stop $target
+			sleep 1
+			docker rm $target
+		fi
+	done
+fi
