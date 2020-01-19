@@ -16,9 +16,9 @@ find . -maxdepth 1 -not -name '.git*' -not -name 'bin' -not -name '.' -not -name
 [[ ! -d $tmpDEST/bin ]] && mkdir $tmpDEST/bin
 
 #find $SRC/bin -maxdepth 1 -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
-find $SRC/bin -maxdepth 1 -not -name 4jdesk -not -name msteams -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
+find $SRC/bin -maxdepth 1 -not -name '4jdesk' -not -name 'msteams' -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
 
 
-# cp -r $tmpDEST $DEST
+cp -r $tmpDEST/* $DEST/
 
 ls -al

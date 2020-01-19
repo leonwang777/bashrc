@@ -1,11 +1,14 @@
 #!/bin/bash
 if [ $# -lt 1 ]
-then 
-	echo "[Usage:] dk_rmi <image id or name>\n" 
+then
+    echo "[Usage:] dk_rmi <image id or name>\n"
 else
-	read -n 1 -p "Be sure all dependencies of running containers are stopped. To be continue (y/n) ? " ans
-	if [[ $ans =~ ^[Yy]$ ]]
-	then 
-		docker rmi $1
-	fi
+    for target in $@
+    do
+        read -n 1 -p "Be sure all dependencies of $target image are stopped. To be continue (y/n) ? " ans
+        if [[ $ans =~ ^[Yy]$ ]]
+        then
+            docker rmi $target
+        fi
+    done
 fi

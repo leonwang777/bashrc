@@ -1,9 +1,13 @@
 #!/bin/bash
-# find and replace string pattern ($3) with new str ($4) in files under path but exludes files pattern ($2) 
+# find and replace string pattern ($3) with new str ($4) in files underpath 
+# but not find files in exludes files pattern ($2). it will also back up original
+# file to .old
+# "[Usage:] findreplace path exclude_files_pattern old_str_pattern new_str"	
+
 if [[ $# == 4 ]]
 then
     echo  run $0 $*
-    # replace and backup orignal file with .old
+    # find and replace, backup orignal file with .old
 	grep -rl --color=auto $1 -e $3 | grep -v $2 | xargs -r sed -s -i.old -e "s/$3/$4/g"
 #	grep -rl $3 $1  | grep -v $2 | xargs -r sed -s -i.old -e "s/$3/$4/g"
 else

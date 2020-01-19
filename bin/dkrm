@@ -4,13 +4,17 @@
 #-------------------------------------
 if [ $# -lt 1 ]
 then 
-	echo "[Usage:] dk_rm <container id or name>\n" 
+	echo "[Usage:] dkrm <container id or name>\n" 
 else
-	read -n 1 -p "Will remove container $1. To be continue (y/n) ? " ans
-	echo -e "\n"
-	if [[ $ans =~ ^[Yy]$ ]]
-	then  
-		docker stop $1
-		docker rm $1
-	fi
+	for target in $@ 
+	do
+		read -n 1 -p "Will remove container $target. To be continue (y/n) ? " ans
+		echo -e "\n"
+		if [[ $ans =~ ^[Yy]$ ]]
+		then  
+			docker stop $target
+			sleep 1
+			docker rm $target
+		fi
+	done
 fi

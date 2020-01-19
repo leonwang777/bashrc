@@ -1,0 +1,22 @@
+#!/bin/bash
+read -p "stop pletmediaserver service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo snap stop plexmediaserver
+sudo snap services plexmediaserver
+
+read -p "stop teamviewerd service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo systemctl stop teamviewerd
+sudo systemctl status teamviewerd
+
+read -p "stop apache2 service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo systemctl stop apache2
+sudo systemctl status apache2
+
+read -p "stop vsftpd service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo systemctl stop vsftpd
+sudo systemctl status vsftpd
+
+read -p "stop zookeeper service ?" ans
+[[ $ans =~ ^[Yy]$ ]] &&  sudo /usr/share/zookeeper/bin/zkServer.sh stop
+
+read -p "stop tomcat8 service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo /usr/share/tomcat8/bin/shutdown.sh

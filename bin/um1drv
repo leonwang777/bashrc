@@ -1,0 +1,2 @@
+#!/bin/sh
+ifusermount -u /home/leon/OneDrv

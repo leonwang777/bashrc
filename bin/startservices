@@ -1,0 +1,22 @@
+#!/bin/sh
+read -p "start pletmediaserver service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo snap start plexmediaserver
+sudo snap services plexmediaserver
+
+read -p "start teamviewerd service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo systemctl start teamviewerd
+sudo systemctl status teamviewerd
+
+read -p "start apache2 service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo systemctl start apache2
+sudo systemctl status apache2
+
+read -p "start vsftpd service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo systemctl start vsftpd
+sudo systemctl status vsftpd
+
+read -p "start zookeeper service ?" ans
+[[ $ans =~ ^[Yy]$ ]] &&  sudo /usr/share/zookeeper/bin/zkServer.sh start
+
+read -p "start tomcat8 service ?" ans
+[[ $ans =~ ^[Yy]$ ]] && sudo /usr/share/tomcat8/bin/startup.sh
