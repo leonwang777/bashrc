@@ -1,6 +1,6 @@
 # For windows 10 programs
 
-if [   "$(uname -r|grep Microsoft)" != '' ]; then 
+if [   "$(uname -r|grep Microsoft)" != '' ]; then
    alias vscode="/mnt/c/Program\ Files/Microsoft\ VS\ Code/Code.exe"
    alias atom="/mnt/c/Users/LeonWang/AppData/Local/atom/atom.exe"
 fi
@@ -14,7 +14,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias diff='diff --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'   
+    alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -26,7 +26,12 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lf="ls -l | egrep -v '^d'"
 alias laf="ls -al | egrep -v '^d'"
-alias ldir='ls -d */'
+alias dirw='ls -d */'
+alias dirl='ls -dl */'
+alias llk='ls -alFsk'
+alias lls='ls -alFS'
+alias llt='ls -alFt'
+alias llX='ls -alFX'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -45,19 +50,24 @@ alias kernelver='uname -r'
 # disk usage for file systems
 alias fsls='df -ah'
 
-# disk usage status
-alias duls='du -sh'
-# check network ports ana running services
-alias nstat='sudo netstat -tulpn'
-alias ipaddr='ip -c addr'
-
 # check cpu usage
 alias ps='ps aux'
 alias hist='history'
 # for untar and ungzip, unbz
 alias txgz='tar xvzf'
 alias txbz='tar xvjf'
+alias txxz='tar xvJf'
+alias tcgz='tar -cvzf'		#.tgz
+alias tcbz='tar -cvjf'		#.tbz
+alias tcxz='tar -cvJf'   	#.txz
 
+
+
+# check network ports ana running services
+alias nstat='sudo netstat -ntulp'
+alias sstu='sudo ss -ntulpr'
+alias ipaddr='ip -c addr'
+alias nmapport='sudo nmap -sT -sU -O localhost'
 #list opened files of tcp network port 1 ~ 1024
 alias lsoftcp='lsof -i TCP:1-1024'
 #shows the list of all network connections ‘LISTENING & ESTABLISHED’.
@@ -67,10 +77,12 @@ alias lsofusr='lsof -u'
 #list all TCP / UDP connections
 alias lsoftu='lsof -i tcp; lsof -i udp;'
 #list all processes which are listening th particular port
-alias lsofport='lsof -i :[port]'
+#alias lsofport='lsof -i :port' 		# attach port number
+alias fuser='fuser 80/tcp'
+
 # kill
 alias killupro='kill -9 `lsof -t -u [usrname]`'
-# tmux 
+# tmux
 alias killtm='tmux kill-server'
 alias tmls='tmux ls'
 alias tmlss='tmux list-sessions'
@@ -92,14 +104,14 @@ alias chromium='/usr/bin/chromium-browser'
 alias mkdir='mkdir -p'
 alias virtualenv='virtualenv -p python3'
 
-alias dkps='docker ps -a'
-alias dkrm='docker rm'
-alias dkrmi='docker rmi'
-alias dks='docker stop'
-alias dkrdit='docker run -dit'
-alias dkeit='docker exec -it'
-alias dknwls='docker network ls'
-alias dki='docker images'
+alias dkps='sudo docker ps -a -s'
+alias dkr='sudo docker rm'
+alias dkri='sudo docker rmi'
+alias dks='sudo docker stop'
+alias dkrdit='sudo docker run -dit'
+alias dkeit='sudo docker exec -it'
+alias dknwls='sudo docker network ls'
+alias dki='sudo docker images'
 
 alias ccat='/usr/games/lolcat'
 alias goaml='cd ~/ProjSrc/AML'
@@ -107,3 +119,74 @@ alias rcloned='rclone mount --allow-non-empty --daemon --write-back-cache onedri
 alias cdir='. ~/bin/godir'
 
 
+# Alias for conda
+alias concre='conda create python=3.7 --name '
+alias conenvls='conda info --envs'		# or conda env list
+alias concon='/usr/share/anaconda3/bin/conda update anaconda'
+alias conon='conda activate'
+alias conoff='conda deactivate'
+alias conupdate='sudo /usr/share/anaconda3/bin/conda update -n base conda ; sudo /usr/share/anaconda3/bin/conda update anaconda'
+
+alias rmsshhost='ssh-keygen -f "/home/leon/.ssh/known_hosts" -R'
+alias cenv='virtualenv --clear -p python3.7'
+
+alias amldev='ssh graphen@development.eastasia.cloudapp.azure.com'
+alias amlkib='chrome --new-window http://development.eastasia.cloudapp.azure.com:5601'
+
+# disk usage status
+alias dusum='du -hs'		# total size of path
+# disk usage and sort by size ascending
+alias duhs='du -hs -- * | sort -h'
+alias duhsg='du -hs -- * | sort -h | grep'
+# disk usage and sort by size descending
+alias duhsr='du -hs -- * | sort -h -r'
+alias duhsrg='du -hs -- * | sort -h -r | grep'
+
+alias joboot='sudo journalctl -b -l'
+
+
+alias spstate='sudo snap services'
+alias spdn='sudo snap stop'
+alias spup='sudo snap start'
+alias spreup='sudo snap restart'
+
+alias edalias='mi ~/.bash_aliases'
+
+alias azD='ssh graphen@azdev'
+alias 2aiaml='ssh ubuntu@aiamldev001'
+alias checkport='nc -zvw10'
+alias 2azdev='ssh graphen@azdev'
+alias 2leon='ssh centos@leonardo'
+
+# for VNC server / viewer
+alias vncvw='xtigervncviewer -SecurityTypes VncAuth -passwd /home/leon/.vnc/passwd :1'
+alias vnckill='vncserver -kill :1'
+alias vncd='tigervncserver -xstartup /usr/bin/terminator'
+
+# Systemctl
+alias syss='systemctl status'
+alias syson='sudo systemctl start'
+alias sysoff='sudo systemctl stop'
+alias sysre='sudo systemctl restart'
+alias sysen='sudo systemctl enable'
+alias sysdis='sudo systemctl disable'
+
+# DNS look up for ip
+alias digip='dig +short'
+
+# Git
+alias gipty='git commit -m --allow-empty-message'
+alias gip='git push'
+alias gi+='git add .'
+alias gim='git commit -m'
+
+alias snapdis='sudo snap stop --disable'
+
+alias 2amlvm='ssh leon@aiamlsvr'
+alias tree1='tree -L 1'
+alias reme='remarkable'
+alias doreme='typora'               # markdown viewer by typora
+alias tb68='~/Downloads/thunderbird/thunderbird &'
+alias mknm='ln -s /home/leon/Downloads/testcodes/shared_node_modules node_modules'
+alias treex='tree -I'
+alias lsservices='sudo systemctl list-unit-files --type=service'

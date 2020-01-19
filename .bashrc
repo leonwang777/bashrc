@@ -110,15 +110,37 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     PROMPT_COMMAND=`custom_prompt`
 fi
 
-if [ $(uname -n | grep leon-ASUSPRO-B9440) != '' ]; then
+if [[ $(uname -n | grep leon-ASUSPRO-B9440) != '' ]]; then
     #	sudo ntfsfix /dev/nvme0n1p4
-    alias windisk='sudo mount -t ntfs -o auto,rw,user,suid,uid=leon,gid=leon /dev/nvme0n1p4 /home/leon/winshare'
+    alias mntwin='sudo mount -t ntfs -o auto,rw,user,suid,uid=leon,gid=leon /dev/nvme0n1p4 /home/leon/winshare'
 fi
 
 # set PATH so it includes user's private bin directories
 # JAVA, Maven, Gradle related environment and paths are defined system wide in files with .sh extension under /etc/profile.d respectively.
 PATH="./:$HOME/bin:$HOME/.local/bin:/home/leon/npm-global/bin:/etc/alternatives:$PATH"
 export PATH
+
+
+# powerline shell settings
+# powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+POWERLINE_SCRIPT=/usr/share/powerline/bindings/bash/powerline.sh
+if [ -f $POWERLINE_SCRIPT ]; then
+    source $POWERLINE_SCRIPT
+fi
+
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
+
+# figlet Welcome    `whoami`!
+toilet -f mono12 -F metal  Welcome $(whoami) !
 
 # added by Anaconda3 2018.12 installer
 # >>> conda init >>>
@@ -143,23 +165,3 @@ export SDKMAN_DIR="/home/leon/.sdkman"
 [[ -s "/home/leon/.sdkman/bin/sdkman-init.sh" ]] && source "/home/leon/.sdkman/bin/sdkman-init.sh"
 
 export TCLLIBPATH="/usr/lib/x86_64-linux-gnu"
-
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-POWERLINE_SCRIPT=/usr/share/powerline/bindings/bash/powerline.sh
-if [ -f $POWERLINE_SCRIPT ]; then
-  source $POWERLINE_SCRIPT
-fi
-
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
-
-# figlet Welcome    `whoami`!
-toilet -f mono12 -F metal  Welcome $(whoami) !
