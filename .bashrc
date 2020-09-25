@@ -100,8 +100,8 @@ fi
 #fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
-    
-    
+
+
     function custom_prompt() {
         __git_ps1 "\[\033[0;31m\]\u \[\033[0;36m\]\h:\w\[\033[00m\]" " \n\[\033[0;31m\]>\[\033[00m\] " " %s"
         VTE_PWD_THING="$(__vte_osc7)"
@@ -142,26 +142,25 @@ fi
 # figlet Welcome    `whoami`!
 toilet -f mono12 -F metal  Welcome $(whoami) !
 
-# added by Anaconda3 2018.12 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/usr/share/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/usr/share/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/share/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        # \export PATH="/usr/share/anaconda3/bin:$PATH"
-        \export PATH="$PATH:/usr/share/anaconda3/bin"
-    fi
-fi
-unset __conda_setup
-# <<< conda init <<<
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/leon/.sdkman"
 [[ -s "/home/leon/.sdkman/bin/sdkman-init.sh" ]] && source "/home/leon/.sdkman/bin/sdkman-init.sh"
 
 export TCLLIBPATH="/usr/lib/x86_64-linux-gnu"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/leon/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/leon/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/leon/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/leon/anaconda3/bin:$PATH"
+    fi
+fi
+export PATH="/home/leon/anaconda3/bin:$PATH"
+unset __conda_setup
+# <<< conda initialize <<<

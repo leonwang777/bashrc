@@ -1,30 +1,47 @@
 #!/bin/sh
+
+#--------------------------------------------------------------------------------
+# 
+# It will be run as the OS start from "Application Menu > System Tools > Preference 
+#  > Startup Applications
+#
+#---------------------------------------------------------------------------------
+# /usr/bin/screen -d -m -S rcmount /usr/bin/rclone mount onedrive: /home/leon/OneDrv \
+#--allow-other --allow-non-empty --vfs-cache-mode
 # rclone mount onedrive: /home/leon/OneDrive \
+
+#/usr/bin/screen -d -m -S rcmount /usr/bin/rclone mount onedrive: /home/leon/OneDrv \
 rclone mount onedrive: /home/leon/OneDrv \
---allow-non-empty
+--allow-non-empty \
 --rc \
 --checkers 64 \
 --checksum \
 --drive-chunk-size 4M \
 --tpslimit 32 \
 --transfers 64 \
---allow-other \
---buffer-size 256M \
+--buffer-size 1G \
+--drive-chunk-size 32M \
 --max-read-ahead 128M \
 --dir-cache-time 120m \
---cache-chunk-size 16M \
 --cache-dir /Downloads/Rclone_cache \
 --cache-db-path /Downloads/Rclone_cache  \
 --cache-chunk-path /Downloads/Rclone_cache  \
---cache-total-chunk-size 512M \
---cache-chunk-clean-interval 30m \
---cache-tmp-wait-time 72h \
---cache-tmp-upload-path /Downloads/Rclone_cache  \
 --daemon \
 --fast-list \
---multi-thread-cutoff 256M
---multi-thread-streams 16
---vfs-cache-max-age duration 72h \
+--multi-thread-cutoff 256M \
+--multi-thread-streams 16 \
 --vfs-cache-mode full \
+--vfs-cache-max-size 768M \
+--vfs-read-chunk-size 128M \
 --vfs-cache-poll-interval 5m \
---vfs-cache-max-size 512M
+--vfs-cache-max-age 72h \
+--vfs-read-chunk-size-limit off \
+--cache-chunk-clean-interval 30m \
+--cache-tmp-wait-time 72h \
+--allow-other \
+--cache-tmp-upload-path /Downloads/Rclone_cache
+
+
+#--cache-total-chunk-size 512M
+
+

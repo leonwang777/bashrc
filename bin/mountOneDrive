@@ -1,0 +1,36 @@
+#!/bin/bash
+# rclone mount --allow-non-empty --daemon onedrive:/ ~/OneDrive/
+# rclone mount --allow-non-empty --daemon --write-back-cache onedrive:/ ~/MS1Drv/
+# rclone mount --allow-non-empty --daemon onedrive:/ ~/MS1Drv/
+
+loglevel=INFO
+logfile=/tmp/onedrv.log
+if [ $# -lt 1 ] ; then
+
+	echo "To run as daemon mode : [Usage] mount1drv [-d] [-debug] (-d : daemon mode)"
+	echo "rclone mount onedrive:/ ~/OneDrive --vfs-cache-mode full --allow-non-empty --buffer-size 1G \
+	--dir-cache-time 72h --drive-chunk-size 32M --fast-list --log-level $loglevel --log-file=$logfile \
+	--vfs-read-chunk-size 128M --vfs-read-chunk-size-limit off"
+
+	rclone mount onedrive:/ ~/OneDrive --vfs-cache-mode full --allow-non-empty --buffer-size 1G \
+	--dir-cache-time 72h --drive-chunk-size 32M --fast-list --log-level $loglevel \
+	--log-file=$logfile --vfs-read-chunk-size 128M --vfs-read-chunk-size-limit off
+
+elif [ "$1" = "-d" ] ; then
+
+	if [ "$2" = "-debug" ]; then
+
+    		loglevel=DEBUG
+
+	fi
+
+	echo "[Usage] mount1drv [-d] [-debug] (-d : daemon mode)"
+	echo "rclone mount onedrive:/ ~/OneDrive --daemon --vfs-cache-mode full --allow-non-empty --buffer-size 1G \
+	--dir-cache-time 72h --drive-chunk-size 32M --fast-list --log-level $loglevel --log-file=$logfile \
+	--vfs-read-chunk-size 128M --vfs-read-chunk-size-limit off"
+
+	rclone mount onedrive:/ ~/OneDrive --daemon --vfs-cache-mode full --allow-non-empty --buffer-size 1G \
+	--dir-cache-time 72h --drive-chunk-size 32M --fast-list --log-level $loglevel \
+	--log-file=$logfile --vfs-read-chunk-size 128M --vfs-read-chunk-size-limit off
+
+fi

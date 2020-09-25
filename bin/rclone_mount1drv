@@ -1,1 +1,1 @@
-sh -c "rclone --exclude 'node_modules*' --vfs-cache-mode writes mount onedrive: ~/OneDrive_Rclone"
+sh -c "rclone --exclude 'node_modules*' --vfs-cache-mode writes mount onedrive: ~/OneDrv"

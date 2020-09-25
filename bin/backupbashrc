@@ -22,7 +22,7 @@ echo "cp -r $tmpDEST/* $DEST/"
 cp -r $tmpDEST/* $DEST/
 
 echo "cp $tmpDEST/.* $DEST/"
-cp -r $tmpDEST/.* $DEST/
+cp $tmpDEST/.* $DEST/
 
 
 ls -al

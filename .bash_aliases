@@ -115,17 +115,17 @@ alias dki='sudo docker images'
 
 alias ccat='/usr/games/lolcat'
 alias goaml='cd ~/ProjSrc/AML'
-alias rcloned='rclone mount --allow-non-empty --daemon --write-back-cache onedrive:/ ~/OneDriven/'
+alias rcloned='/usr/bin/screen -d -m -S rcmount /usr/bin/rclone mount --allow-non-empty --daemon --write-back-cache onedrive:/ ~/OneDrv/'
 alias cdir='. ~/bin/godir'
 
 
 # Alias for conda
 alias concre='conda create python=3.7 --name '
 alias conenvls='conda info --envs'		# or conda env list
-alias concon='/usr/share/anaconda3/bin/conda update anaconda'
+alias concon='~/anaconda3/bin/conda update anaconda'
 alias conon='conda activate'
 alias conoff='conda deactivate'
-alias conupdate='sudo /usr/share/anaconda3/bin/conda update -n base conda ; sudo /usr/share/anaconda3/bin/conda update anaconda'
+alias conupdate='~/anaconda3/bin/conda update -n base conda ; ~/anaconda3/bin/conda update anaconda'
 
 alias rmsshhost='ssh-keygen -f "/home/leon/.ssh/known_hosts" -R'
 alias cenv='virtualenv --clear -p python3.7'
