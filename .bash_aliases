@@ -190,3 +190,12 @@ alias tb68='~/Downloads/thunderbird/thunderbird &'
 alias mknm='ln -s /home/leon/Downloads/testcodes/shared_node_modules node_modules'
 alias treex='tree -I'
 alias lsservices='sudo systemctl list-unit-files --type=service'
+
+# For wireless network
+alias wfdstatus='nmcli device' # d: abbreviation of device
+alias wfdshow='nmcli d show'
+alias wfcshow='nmcli c show' # c: connection
+alias wfshow='nmcli d show wlp2s0'
+alias wfstate='nmcli r'
+alias wfss='wavemon' # wifi signal strength'
+alias wfui='nmtui'
