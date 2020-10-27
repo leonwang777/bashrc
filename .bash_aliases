@@ -190,3 +190,13 @@ alias tb68='~/Downloads/thunderbird/thunderbird &'
 alias mknm='ln -s /home/leon/Downloads/testcodes/shared_node_modules node_modules'
 alias treex='tree -I'
 alias lsservices='sudo systemctl list-unit-files --type=service'
+
+
+# For MacOS
+## for Wifi
+alias y5info='y5info.zsh'
+alias y5noise='y5noise.zsh'
+alias y5rate='y5rate.zsh'
+alias y5scanid='y5scanid.zsh'
+alias y5ssid='y5ssid.zsh'
+alias y5strength='y5strength.zsh'
