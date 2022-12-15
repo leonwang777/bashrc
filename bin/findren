@@ -1,5 +1,16 @@
 #!/bin/bash
-# rename files under current path with new name 
+# rename files under current path with new name
+# for Mac OS, you may need to install rename utility by 'brew install rename'
+# Or use sed and xargs combination like:
+# find . -maxdepth 1 -type f -name "$1" | sed "p;s/$2/$3/" | xargs -n2 mv
+# Above command will echo the original file name (p) with a modified name (s/$2/$3/)
+# and feeds all to mv in pairs (xargs -n2).
+# [Usage] findren file_pattern old_string new_string, or
+# findren <file pattern string> <old string>. If skip <new string> it will remove old string"
+#
+# For example findren "apk.tw_*" apk\.tw_
+#
+
 if [[ $# == 3 ]]
 then
 	find . -maxdepth 1 -type f -name "$1" | rename "s/$2/$3/g"
@@ -8,5 +19,5 @@ then
 	find . -maxdepth 1 -type f -name "$1" | rename "s/$2//g"
 else
 	echo -e "[Usage] findren file_pattern old_string new_string, or \nfindren <file pattern string> <old string>. If skip <new string> it will delete old string"
-	
+	echo -e "findren \"apk.tw_*\" apk\.tw_"
 fi

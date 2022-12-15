@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# backup files under /home/leon/bashrc to /tmp/leon/bashrc
+# copy /home/leon/bin files to /tmp/backuprc/bin and then copy all of them and .prefixed files to /home/leon/bashrc  as backup
+#
 SRC=/home/leon
 DEST=/home/leon/bashrc
 tmpDEST=/tmp/backuprc
@@ -11,10 +15,16 @@ tmpDEST=/tmp/backuprc
 
 cd /home/leon/bashrc
 pwd
+
+#
+# copy all files of current directory /home/leon/bashrc but exclude '.git*', 'bin', '.', 'README*' to destination directory
+#
 find . -maxdepth 1 -not -name '.git*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp $SRC/{} $tmpDEST \;
 
 [[ ! -d $tmpDEST/bin ]] && mkdir $tmpDEST/bin
-
+#
+# copy all files of /home/leon/src/bin but exclude '4jdesk', 'msteams', 'unraid_rclone*', 'bin', '.', 'README*' to destination directory
+#
 #find $SRC/bin -maxdepth 1 -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
 find $SRC/bin -maxdepth 1 -not -name '4jdesk' -not -name 'msteams' -not -name 'unraid_rclone*' -not -name 'bin' -not -name '.' -not -name 'README*' -exec cp {} $tmpDEST/bin \;
 
